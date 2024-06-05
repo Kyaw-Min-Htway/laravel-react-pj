@@ -29,4 +29,8 @@ class UserController extends Controller
             'users' => $users
         ],200);
     }
+
+    public function store(){
+        
+    }
 }
