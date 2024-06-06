@@ -60,6 +60,18 @@ class UserController extends Controller
                     'message' => 'User not found.'
                 ],404);
             }
+            $users->name = $request->name;
+            $users->email = $request->email;
+            $users->password = $request->password;
+
+            //update user
+            $users->save();
+
+            //return json response
+            return response()->json([
+                'message' => "User successfully updated."
+            ],200);
+            
         }catch(\Exception $e){
             //return json response
             return response()->json([
