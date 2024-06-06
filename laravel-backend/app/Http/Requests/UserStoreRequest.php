@@ -21,13 +21,13 @@ class UserStoreRequest extends FormRequest
      */
     public function rules(): array
     {
-        if(request()->isMethod('post')) {
+        if(request()->isMethod('post')){
             return [
                 'name' => 'required|string|max:258',
                 'email' => 'required|string',
                 'password' => 'required|string'
             ];
-        } else {
+        }else {
             return [
                 'name' => 'required|string|max:258',
                 'email' => 'required|string',
