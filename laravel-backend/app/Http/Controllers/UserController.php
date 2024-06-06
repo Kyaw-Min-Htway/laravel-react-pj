@@ -42,11 +42,28 @@ class UserController extends Controller
 
             return response()->json([
                 'message' => 'User successfully created.'
-            ])
+            ]);
         }catch(\Exception $e){
             //return json response
             return response()->json([
                 'message' => 'Something went really wrong!'
+            ],500);
+        }
+    }
+
+    public function update(UserStoreRequest $request, $id){
+        try{
+            //find User
+            $users = User::find($id);
+            if(!$users){
+                return $users()->json([
+                    'message' => 'User not found.'
+                ],404);
+            }
+        }catch(\Exception $e){
+            //return json response
+            return response()->json([
+                'message' => "Something went really wrong!"
             ],500);
         }
     }
