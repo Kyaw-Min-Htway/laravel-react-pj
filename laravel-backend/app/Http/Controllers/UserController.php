@@ -56,7 +56,7 @@ class UserController extends Controller
             //find User
             $users = User::find($id);
             if(!$users){
-                return $users()->json([
+                return response()->json([
                     'message' => 'User not found.'
                 ],404);
             }
@@ -71,12 +71,30 @@ class UserController extends Controller
             return response()->json([
                 'message' => "User successfully updated."
             ],200);
-            
+
         }catch(\Exception $e){
             //return json response
             return response()->json([
                 'message' => "Something went really wrong!"
             ],500);
         }
+    }
+
+    public function destroy($id){
+        //detail
+        $users = User::find($id);
+        if(!$users){
+            return response()->json([
+                "message" => "User not found."
+            ],404);
+        }
+
+        //delete User
+        $users->delete();
+
+        //return json response
+        return response()->json([
+            'message' => 'User successfully deleted.'
+        ],200);
     }
 }
