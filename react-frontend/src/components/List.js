@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 
 const List = () => {
@@ -18,6 +19,16 @@ const List = () => {
         }catch(err){
             console.log("Something Wrong");
         }
+    }
+
+    const handleDelete = async(id)=>{
+        await axios.delete("http://127.0.0.1:8000/api/usersdelete/"+id);
+        const newUserData=userData.filter((item) => {
+            return(
+                item.id !==id
+            )
+        })
+        setUserData(newUserData);
     }
     return(
         <div className='container'>
@@ -40,7 +51,9 @@ const List = () => {
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
                                     <td>
-                                        Add Edit Delete
+                                        <NavLink to={`/view/${user.id}`} className="btn btn-success mx-2">View</NavLink>
+                                        <NavLink to={`/edit/${user.id}`} className="btn btn-info mx-2">Edit</NavLink>
+                                        <button onClick={() => handleDelete(user.id)} className="btn btn-danger">Delete</button>
                                     </td>
                                 </tr>
                             )
