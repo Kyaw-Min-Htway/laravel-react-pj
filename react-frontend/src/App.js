@@ -4,6 +4,7 @@ import "./../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Home from "./components/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import View from "./components/View";
+import Edit from "./components/Edit";
 
 function App(){
   return (
@@ -12,6 +13,7 @@ function App(){
         <Routes>
           <Route exact path="/" element={<Home/>}/>
           <Route exact path="/view/:id" element={<View/>}/>
+          <Route exact path="/edit/:id" element={<Edit/>}/>
         </Routes>
       </Router>
     </div>
